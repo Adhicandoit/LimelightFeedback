@@ -23,7 +23,7 @@ export class App implements OnInit {
 
   // !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
   // NOTE: Ensure this is the /exec URL, not the /dev URL.
-  private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyl5cKShfcLj4NSe5vDtOyPFLL4S3yfDh-wpll2L0Mi6LA2RWYjdnvqTYDu0AyyWH2B/exec';
+  private readonly SCRIPT_URL = '';
 
   // Time_of_Visit is removed
   initialData = {
@@ -44,7 +44,7 @@ export class App implements OnInit {
     Food_Temperature: 0,
     Food_Presentation: 0,
     Ambience: 0,
-    Decor: 0,        
+    Decor: 0,
     Cleanliness: 0,
     Music: 0,
 
@@ -68,9 +68,9 @@ export class App implements OnInit {
       // Personal & Visit Details
       Name: [this.initialData.Name, Validators.required],
       Occupation: [this.initialData.Occupation],
-      Date_of_Birth: [this.initialData.Date_of_Birth],
+      Date_of_Birth: [this.initialData.Date_of_Birth, Validators.required],
       Wedding_Anniversary: [this.initialData.Wedding_Anniversary],
-      Contact_Number: [this.initialData.Contact_Number],
+      Contact_Number: [this.initialData.Contact_Number, Validators.required],
       Email: [this.initialData.Email, Validators.email],
       Address: [this.initialData.Address], 
       
@@ -99,9 +99,9 @@ export class App implements OnInit {
       Return_to_Palace: [this.initialData.Return_to_Palace, Validators.required],
       
       // Footer fields
-      Table_No: [this.initialData.Table_No],
-      Steward: [this.initialData.Steward],
-      Manager: [this.initialData.Manager]
+      Table_No: [this.initialData.Table_No, Validators.required],
+      Steward: [this.initialData.Steward, Validators.required],
+      Manager: [this.initialData.Manager, Validators.required]
     });
   }
 

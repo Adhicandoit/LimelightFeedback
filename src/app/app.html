@@ -33,9 +33,11 @@
                       class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
               </div>
               <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Date of Birth</label>
+                <label class="block text-gray-700 font-medium mb-1">Date of Birth<span class="text-red-500">*</span></label>
                 <input type="date" formControlName="Date_of_Birth" 
                       class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+                <div *ngIf="commentsForm.get('Date_of_Birth')?.invalid && (commentsForm.get('Date_of_Birth')?.dirty || commentsForm.get('Date_of_Birth')?.touched)" 
+                    class="text-red-600 text-xs mt-1">DOB is required.</div>    
               </div>
               <div class="input-group">
                 <label class="block text-gray-700 font-medium mb-1 text-nowrap">Wedding Anniversary</label>
@@ -46,10 +48,12 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
               <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Contact Number</label>
+                <label class="block text-gray-700 font-medium mb-1">Contact Number<span class="text-red-500">*</span></label>
                 <input type="text" formControlName="Contact_Number" placeholder="e.g. 9876543210"
                       class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-              </div>
+                <div *ngIf="commentsForm.get('Contact_Number')?.invalid && (commentsForm.get('Contact_Number')?.dirty || commentsForm.get('Contact_Number')?.touched)" 
+                    class="text-red-600 text-xs mt-1">Contact No. is required.</div>
+                </div>
               <div class="input-group">
                 <label class="block text-gray-700 font-medium mb-1">E-mail</label>
                 <input type="email" formControlName="Email" placeholder="you@example.com"
@@ -80,42 +84,69 @@
             <h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Rate Your Experience</h3>
 
             <div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg text-sm">
-              
-              <div class="grid grid-cols-5 font-bold text-center bg-blue-50 border-b border-blue-200">
-                <div class="col-span-2 text-left p-4 text-gray-800">Criteria</div>
-                <div class="p-4 text-blue-700">Excellent (1)</div>
-                <div class="p-4 text-gray-700">Good (2)</div>
-                <div class="p-4 text-gray-500">Needs Improvment (3)</div>
-              </div>
+             
+    <!-- TABLE STRUCTURE START -->
+    <!-- The table uses table-fixed and w-full to maintain the grid-like column widths. -->
+    <table class="w-full table-fixed">
+        
+        <!-- RATING HEADER -->
+        <thead class="font-bold text-center bg-blue-50 border-b border-blue-200">
+            <tr>
+                <!-- Criteria Label (w-4/12 = approx 33%) -->
+                <th class="w-3/12 text-left p-4 text-gray-800">Criteria</th>
+                
+                <!-- Rating Headers (w-2/12 = approx 16.6% each) -->
+                <!-- The whitespace-nowrap is critical for horizontal alignment. -->
+                <th class="w-2/12 p-1 text-blue-700 text-xs whitespace-nowrap">Excellent</th>
+                <th class="w-2/12 p-1 text-gray-700 text-xs whitespace-nowrap">Good</th>
+                <th class="w-2/12 p-1 text-gray-500 text-xs whitespace-nowrap">Needs Improvement</th>
+            </tr>
+        </thead>
+        
+        <!-- TABLE BODY AND ROW TEMPLATE -->
+        <tbody>
+            <!-- Rating Row Template (Aligned using table cells) -->
+            <ng-template #ratingRow let-label="label" let-controlName="controlName">
+                <!-- RATING ROW -->
+                <tr class="items-center border-b border-gray-100 last:border-b-0 transition duration-150 hover:bg-blue-50/50">
+                    
+                    <!-- Label -->
+                    <td class="p-2 sm:p-4 text-gray-700 font-medium align-middle">{{ label }}</td>
+                    
+                    <!-- Radio Buttons - FINAL FIX: Wrapped in a centered div for guaranteed horizontal alignment -->
+                    <td class="p-2 align-middle">
+                        <div class="flex justify-center w-full">
+                            <input type="radio" [value]="'Excellent'" [formControlName]="controlName" class="form-radio text-blue-700">
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle">
+                        <div class="flex justify-center w-full">
+                            <input type="radio" [value]="'Good'" [formControlName]="controlName" class="form-radio text-blue-700">
+                        </div>
+                    </td>
+                    <td class="p-2 align-middle">
+                        <div class="flex justify-center w-full">
+                            <input type="radio" [value]="'Needs Improvement'" [formControlName]="controlName" class="form-radio text-blue-700">
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
 
-              <!-- Rating Row Template -->
-              <ng-template #ratingRow let-label="label" let-controlName="controlName">
-                <div class="grid grid-cols-5 items-center border-b border-gray-100 last:border-b-0 transition duration-150 hover:bg-blue-50/50">
-                  <div class="col-span-2 p-4 text-gray-700 font-medium">{{ label }}</div>
-                  <div class="text-center p-4">
-                    <!-- Using custom form-radio class for unified styling -->
-                    <input type="radio" [value]="1" [formControlName]="controlName" class="form-radio text-blue-700">
-                  </div>
-                  <div class="text-center p-4">
-                    <input type="radio" [value]="2" [formControlName]="controlName" class="form-radio text-blue-700">
-                  </div>
-                  <div class="text-center p-4">
-                    <input type="radio" [value]="3" [formControlName]="controlName" class="form-radio text-blue-700">
-                  </div>
-                </div>
-              </ng-template>
-
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Hospitality', controlName: 'Hospitality'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Attention', controlName: 'Attention'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Food Quality', controlName: 'Food_Quality'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Taste', controlName: 'Taste'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Food Temperature', controlName: 'Food_Temperature'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Food Presentation', controlName: 'Food_Presentation'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Ambience', controlName: 'Ambience'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Decor', controlName: 'Decor'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Cleanliness', controlName: 'Cleanliness'}"></div>
-              <div *ngTemplateOutlet="ratingRow; context: {label: 'Music', controlName: 'Music'}"></div>
-            </div>
+            <!-- Template Outlets for each rating row -->
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Hospitality', controlName: 'Hospitality'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Attention', controlName: 'Attention'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Quality', controlName: 'Food_Quality'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Taste', controlName: 'Taste'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Temperature', controlName: 'Food_Temperature'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Presentation', controlName: 'Food_Presentation'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Ambience', controlName: 'Ambience'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Decor', controlName: 'Decor'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Cleanliness', controlName: 'Cleanliness'}"></ng-container>
+            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Music', controlName: 'Music'}"></ng-container>
+        </tbody>
+    </table>
+    <!-- TABLE STRUCTURE END -->
+</div>
           </section>
 
           <!-- Open-ended Questions -->
@@ -174,10 +205,7 @@
                 
               </div>
               
-              <div *ngIf="commentsForm.get('Manager_Visit')?.invalid && (commentsForm.get('Manager_Visit')?.dirty || commentsForm.get('Manager_Visit')?.touched)" 
-                  class="text-red-600 text-xs mt-2 w-full">Please select Yes or No for Manager visit.</div>
-              <div *ngIf="commentsForm.get('Return_to_Palace')?.invalid && (commentsForm.get('Return_to_Palace')?.dirty || commentsForm.get('Return_to_Palace')?.touched)" 
-                  class="text-red-600 text-xs mt-1 w-full">Please select Yes or No for returning.</div>
+
             </div>
 
             <!-- Staff/Table Details -->
