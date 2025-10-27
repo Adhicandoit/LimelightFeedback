@@ -21,9 +21,15 @@ export class App implements OnInit {
 	submissionStatus: 'initial' | 'submitting' | 'success' | 'server_error' | 'validation_error' = 'initial'; 
 	public V = Validators; 
 
+<<<<<<< HEAD
 	// !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
 	// NOTE: Ensure this is the /exec URL, not the /dev URL.
 	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3F-ilsQwhbG1ZuNtS_W6bHgL5rz-Y4DQUa6dSlc8hxLmnO1rflx_roUmtdMwP5R69/exec';
+=======
+  // !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
+  // NOTE: Ensure this is the /exec URL, not the /dev URL.
+  private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbynJ7iHyJDaYByE3hLGXwRNGe3VwlxKGHJlkHbo8CKIn5_RyC-tE29FrC4Do92Y-uaD/exec';
+>>>>>>> 4fc1fa01c8e7b338d258fca2e24c9c31deafb15c
 
 	// Time_of_Visit is removed
 	initialData = {
