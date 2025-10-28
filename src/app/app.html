@@ -1,257 +1,257 @@
 <!-- Using a container with padding and a light background for the whole page -->
-    <div class="min-h-screen bg-gray-50 p-4 sm:p-8 flex items-center justify-center font-inter">
-      <div class="w-full max-w-4xl mx-auto p-6 sm:p-10 bg-white shadow-2xl rounded-2xl text-gray-800 border border-gray-100">
-        
-        <!-- Header Section (White & Blue) -->
-        <header class="relative text-center pb-6 mb-10 border-b-4 border-blue-100">
-          
-          <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight pt-6">GUEST FEEDBACK FORM</h1>
-          <h2 class="text-lg font-light text-blue-700 mt-2 tracking-wider uppercase">Limelight Dining Experience</h2>
-        </header>
+<div class="min-h-screen bg-gray-50 p-4 sm:p-8 flex items-center justify-center font-inter">
+	<div class="w-full max-w-4xl mx-auto p-6 sm:p-10 bg-white shadow-2xl rounded-2xl text-gray-800 border border-gray-100">
+		
+		<!-- Header Section (White & Blue) -->
+		<header class="relative text-center pb-6 mb-10 border-b-4 border-blue-100">
+			
+			<h1 class="text-4xl font-extrabold text-gray-900 tracking-tight pt-6">GUEST FEEDBACK FORM</h1>
+			<h2 class="text-lg font-light text-blue-700 mt-2 tracking-wider uppercase">Limelight Dining Experience</h2>
+		</header>
 
-        <p class="text-md text-gray-600 mb-8 leading-relaxed">
-          Dear Guest, thank you for choosing <b>Limelight</b>. Your valuable feedback is instrumental in helping us ensure a consistently <b>Excellent</b> dining experience.
-        </p>
+		<p class="text-md text-gray-600 mb-8 leading-relaxed">
+			Dear Guest, thank you for choosing <b>Limelight</b>. Your valuable feedback is instrumental in helping us ensure a consistently <b>Excellent</b> dining experience.
+		</p>
 
-        <form [formGroup]="commentsForm" (ngSubmit)="onSubmit()" class="space-y-8">
-          
-          <!-- Personal & Visit Details -->
-          <section class="space-y-6">
-            <h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Your Details</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Name <span class="text-red-500">*</span></label>
-                <input type="text" formControlName="Name" placeholder="Your full name"
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-                <div *ngIf="commentsForm.get('Name')?.invalid && (commentsForm.get('Name')?.dirty || commentsForm.get('Name')?.touched)" 
-                    class="text-red-600 text-xs mt-1">Name is required.</div>
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Occupation</label>
-                <input type="text" formControlName="Occupation" placeholder="Your profession"
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Date of Birth<span class="text-red-500">*</span></label>
-                <input type="date" formControlName="Date_of_Birth" 
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
-                <div *ngIf="commentsForm.get('Date_of_Birth')?.invalid && (commentsForm.get('Date_of_Birth')?.dirty || commentsForm.get('Date_of_Birth')?.touched)" 
-                    class="text-red-600 text-xs mt-1">DOB is required.</div>    
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1 text-nowrap">Wedding Anniversary</label>
-                <input type="date" formControlName="Wedding_Anniversary" 
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
-              </div>
-            </div>
+		<form [formGroup]="commentsForm" (ngSubmit)="onSubmit()" class="space-y-8">
+			
+			<!-- Personal & Visit Details -->
+			<section class="space-y-6">
+				<h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Your Details</h3>
+				
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Name <span class="text-red-500">*</span></label>
+						<input type="text" formControlName="'NAME'" placeholder="Your full name"
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
+						<div *ngIf="commentsForm.get('NAME')?.invalid && (commentsForm.get('NAME')?.dirty || commentsForm.get('NAME')?.touched)" 
+							class="text-red-600 text-xs mt-1">Name is required.</div>
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Occupation</label>
+						<input type="text" formControlName="'OCCUPATION'" placeholder="Your profession"
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Date of Birth<span class="text-red-500">*</span></label>
+						<input type="date" formControlName="'DOB'" 
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+						<div *ngIf="commentsForm.get('DOB')?.invalid && (commentsForm.get('DOB')?.dirty || commentsForm.get('DOB')?.touched)" 
+							class="text-red-600 text-xs mt-1">DOB is required.</div>	
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1 text-nowrap">Wedding Anniversary</label>
+						<input type="date" formControlName="'WEDDING ANNIVERSARY'" 
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+					</div>
+				</div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Contact Number<span class="text-red-500">*</span></label>
-                <input type="text" formControlName="Contact_Number" placeholder="e.g. 9876543210"
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-                <div *ngIf="commentsForm.get('Contact_Number')?.invalid && (commentsForm.get('Contact_Number')?.dirty || commentsForm.get('Contact_Number')?.touched)" 
-                    class="text-red-600 text-xs mt-1">Contact No. is required.</div>
-                </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">E-mail</label>
-                <input type="email" formControlName="Email" placeholder="you@example.com"
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-                <div *ngIf="commentsForm.get('Email')?.errors?.['email'] && (commentsForm.get('Email')?.dirty || commentsForm.get('Email')?.touched)" 
-                    class="text-red-600 text-xs mt-1">Must be a valid email address.</div>
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Address</label>
-                <input type="text" formControlName="Address" placeholder="Your residential address"
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
-              </div>
-            </div>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Contact Number<span class="text-red-500">*</span></label>
+						<input type="text" formControlName="'MOBILE NO.'" placeholder="e.g. 9876543210"
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
+						<div *ngIf="commentsForm.get('MOBILE NO.')?.invalid && (commentsForm.get('MOBILE NO.')?.dirty || commentsForm.get('MOBILE NO.')?.touched)" 
+							class="text-red-600 text-xs mt-1">Contact No. is required.</div>
+						</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">E-mail</label>
+						<input type="email" formControlName="'EMAIL'" placeholder="you@example.com"
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
+						<div *ngIf="commentsForm.get('EMAIL')?.errors?.['email'] && (commentsForm.get('EMAIL')?.dirty || commentsForm.get('EMAIL')?.touched)" 
+							class="text-red-600 text-xs mt-1">Must be a valid email address.</div>
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Address</label>
+						<input type="text" formControlName="'ADDRESS'" placeholder="Your residential address"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent placeholder-gray-400">
+					</div>
+				</div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
-              <div class="input-group md:col-span-1">
-                <label class="block text-gray-700 font-medium mb-1">Date of Visit <span class="text-red-500">*</span></label>
-                <input type="date" formControlName="Date_of_Visit" 
-                      class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
-                <div *ngIf="commentsForm.get('Date_of_Visit')?.invalid && (commentsForm.get('Date_of_Visit')?.dirty || commentsForm.get('Date_of_Visit')?.touched)" 
-                      class="text-red-600 text-xs mt-1">Date of Visit is required.</div>
-              </div>
-            </div>
-          </section>
-          
-          <!-- Ratings Section -->
-          <section class="space-y-6">
-            <h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Rate Your Experience</h3>
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+					<div class="input-group md:col-span-1">
+						<label class="block text-gray-700 font-medium mb-1">Date of Visit <span class="text-red-500">*</span></label>
+						<input type="date" formControlName="'DATE'" 
+							class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+						<div *ngIf="commentsForm.get('DATE')?.invalid && (commentsForm.get('DATE')?.dirty || commentsForm.get('DATE')?.touched)" 
+							class="text-red-600 text-xs mt-1">Date of Visit is required.</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Ratings Section -->
+			<section class="space-y-6">
+				<h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Rate Your Experience</h3>
 
-            <div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg text-sm">
-             
-    <!-- TABLE STRUCTURE START -->
-    <!-- The table uses table-fixed and w-full to maintain the grid-like column widths. -->
-    <table class="w-full table-fixed">
-        
-        <!-- RATING HEADER -->
-        <thead class="font-bold text-center bg-blue-50 border-b border-blue-200">
-            <tr>
-                <!-- Criteria Label (w-4/12 = approx 33%) -->
-                <th class="w-3/12 text-left p-4 text-gray-800">Criteria</th>
-                
-                <!-- Rating Headers (w-2/12 = approx 16.6% each) -->
-                <!-- The whitespace-nowrap is critical for horizontal alignment. -->
-                <th class="w-2/12 p-1 text-blue-700 text-xs whitespace-nowrap">Excellent</th>
-                <th class="w-2/12 p-1 text-gray-700 text-xs whitespace-nowrap">Good</th>
-                <th class="w-2/12 p-1 text-gray-500 text-xs whitespace-nowrap">Needs Improvement</th>
-            </tr>
-        </thead>
-        
-        <!-- TABLE BODY AND ROW TEMPLATE -->
-        <tbody>
-            <!-- Rating Row Template (Aligned using table cells) -->
-            <ng-template #ratingRow let-label="label" let-controlName="controlName">
-                <!-- RATING ROW -->
-                <tr class="items-center border-b border-gray-100 last:border-b-0 transition duration-150 hover:bg-blue-50/50">
-                    
-                    <!-- Label -->
-                    <td class="p-2 sm:p-4 text-gray-700 font-medium align-middle">{{ label }}</td>
-                    
-                    <!-- Radio Buttons - FINAL FIX: Wrapped in a centered div for guaranteed horizontal alignment -->
-                    <td class="p-2 align-middle">
-                        <div class="flex justify-center w-full">
-                            <input type="radio" [value]="'Excellent'" [formControlName]="controlName" class="form-radio text-blue-700">
-                        </div>
-                    </td>
-                    <td class="p-2 align-middle">
-                        <div class="flex justify-center w-full">
-                            <input type="radio" [value]="'Good'" [formControlName]="controlName" class="form-radio text-blue-700">
-                        </div>
-                    </td>
-                    <td class="p-2 align-middle">
-                        <div class="flex justify-center w-full">
-                            <input type="radio" [value]="'Needs Improvement'" [formControlName]="controlName" class="form-radio text-blue-700">
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
+				<div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg text-sm">
+					
+	<!-- TABLE STRUCTURE START -->
+	<!-- The table uses table-fixed and w-full to maintain the grid-like column widths. -->
+	<table class="w-full table-fixed">
+		
+		<!-- RATING HEADER -->
+		<thead class="font-bold text-center bg-blue-50 border-b border-blue-200">
+			<tr>
+				<!-- Criteria Label (w-4/12 = approx 33%) -->
+				<th class="w-3/12 text-left p-4 text-gray-800">Criteria</th>
+				
+				<!-- Rating Headers (w-2/12 = approx 16.6% each) -->
+				<!-- The whitespace-nowrap is critical for horizontal alignment. -->
+				<th class="w-2/12 p-1 text-blue-700 text-xs whitespace-nowrap">Excellent</th>
+				<th class="w-2/12 p-1 text-gray-700 text-xs whitespace-nowrap">Good</th>
+				<th class="w-2/12 p-1 text-gray-500 text-xs whitespace-nowrap">Needs Improvement</th>
+			</tr>
+		</thead>
+		
+		<!-- TABLE BODY AND ROW TEMPLATE -->
+		<tbody>
+			<!-- Rating Row Template (Aligned using table cells) -->
+			<ng-template #ratingRow let-label="label" let-controlName="controlName">
+				<!-- RATING ROW -->
+				<tr class="items-center border-b border-gray-100 last:border-b-0 transition duration-150 hover:bg-blue-50/50">
+					
+					<!-- Label -->
+					<td class="p-2 sm:p-4 text-gray-700 font-medium align-middle">{{ label }}</td>
+					
+					<!-- Radio Buttons - Use controlName variable for formControlName -->
+					<td class="p-2 align-middle">
+						<div class="flex justify-center w-full">
+							<input type="radio" [value]="'Excellent'" [formControlName]="controlName" class="form-radio text-blue-700">
+						</div>
+					</td>
+					<td class="p-2 align-middle">
+						<div class="flex justify-center w-full">
+							<input type="radio" [value]="'Good'" [formControlName]="controlName" class="form-radio text-blue-700">
+						</div>
+					</td>
+					<td class="p-2 align-middle">
+						<div class="flex justify-center w-full">
+							<input type="radio" [value]="'Needs Improvement'" [formControlName]="controlName" class="form-radio text-blue-700">
+						</div>
+					</td>
+				</tr>
+			</ng-template>
 
-            <!-- Template Outlets for each rating row -->
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Hospitality', controlName: 'Hospitality'}"></ng-container>
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Attention', controlName: 'Attention'}"></ng-container>
-      
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Taste', controlName: 'Taste'}"></ng-container>
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Temperature', controlName: 'Food_Temperature'}"></ng-container>
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Presentation', controlName: 'Food_Presentation'}"></ng-container>
-            
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Decor', controlName: 'Decor'}"></ng-container>
-            <ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Cleanliness', controlName: 'Cleanliness'}"></ng-container>
-            
-        </tbody>
-    </table>
-    <!-- TABLE STRUCTURE END -->
+			<!-- Template Outlets for each rating row - CONTROL NAMES NOW MATCH app.ts CUSTOM KEYS -->
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Hospitality', controlName: 'HOSPITALITY'}"></ng-container>
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Attention', controlName: 'ATTENTION'}"></ng-container>
+	
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Taste', controlName: 'TASTE'}"></ng-container>
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Temperature', controlName: 'FOOD TEMPERATURE'}"></ng-container>
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Food Presentation', controlName: 'FOOD PRESENTATION'}"></ng-container>
+			
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Decor', controlName: 'DECOR'}"></ng-container>
+			<ng-container *ngTemplateOutlet="ratingRow; context: {label: 'Cleanliness', controlName: 'CLEANLINESS'}"></ng-container>
+			
+		</tbody>
+	</table>
+	<!-- TABLE STRUCTURE END -->
 </div>
-          </section>
+			</section>
 
-          <!-- Open-ended Questions -->
-          <section class="space-y-6">
-            <h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Comments & Suggestions</h3>
+			<!-- Open-ended Questions -->
+			<section class="space-y-6">
+				<h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Comments & Suggestions</h3>
 
-            <div class="space-y-4 text-sm">
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">How did you come to know about Limelight?</label>
-                <textarea formControlName="How_Did_You_Hear" rows="2" placeholder="e.g. Social media, friend referral, advertisement"
-                          class="w-full border-2 border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-900 placeholder-gray-400"></textarea>
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Which of the ordered dishes did you like the most?</label>
-                <input type="text" formControlName="Dishes_Liked" placeholder="Dishes you enjoyed"
-                      class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Which dish did you NOT like?</label>
-                <input type="text" formControlName="Dishes_Disliked" placeholder="Dishes that need improvement"
-                      class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Any other Comments & Suggestions you wish to offer us.</label>
-                <textarea formControlName="Any_Suggestions" rows="3" placeholder="Share your detailed thoughts"
-                          class="w-full border-2 border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-900 placeholder-gray-400"></textarea>
-              </div>
-            </div>
-          </section>
-          
-          <!-- Final Confirmation & Staff Details -->
-          <section class="space-y-6">
-            <h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Final Details</h3>
+				<div class="space-y-4 text-sm">
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">How did you come to know about Limelight?</label>
+						<textarea formControlName="'HOW DID YOU LEARN ABOUT RATNAMOULI PALACE'" rows="2" placeholder="e.g. Social media, friend referral, advertisement"
+							class="w-full border-2 border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-900 placeholder-gray-400"></textarea>
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Which of the ordered dishes did you like the most?</label>
+						<input type="text" formControlName="'DISHES YOU LIKED'" placeholder="Dishes you enjoyed"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Which dish did you NOT like?</label>
+						<input type="text" formControlName="'DISHES YOU DISLIKED'" placeholder="Dishes that need improvement"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Any other Comments & Suggestions you wish to offer us.</label>
+						<textarea formControlName="'ANY OTHER SUGGESTIONS'" rows="3" placeholder="Share your detailed thoughts"
+							class="w-full border-2 border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 text-gray-900 placeholder-gray-400"></textarea>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Final Confirmation & Staff Details -->
+			<section class="space-y-6">
+				<h3 class="text-2xl font-semibold text-blue-800 border-b pb-2 mb-4 border-blue-500/30">Final Details</h3>
 
-            <!-- Yes/No Questions -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-y border-gray-200">
-              <div class="flex flex-col space-y-3 sm:space-y-0 sm:flex-col sm:space-x-12 w-full text-sm">
-                
-                <!-- Manager Visit -->
-                <div class="flex items-center space-x-4">
-                  <label class="text-gray-700 font-medium whitespace-nowrap">Did Manager visit your table? <span class="text-red-500">*</span></label>
-                  <div class="flex items-center space-x-4">
-                    <label class="flex items-center text-gray-700"><input type="radio" value="Yes" formControlName="Manager_Visit" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">Yes</span></label>
-                    <label class="flex items-center text-gray-700"><input type="radio" value="No" formControlName="Manager_Visit" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">No</span></label>
-                  </div>
-                </div>
-                
-                <!-- Return to Palace -->
-                <div class="flex items-center space-x-4 mt-4 sm:mt-0">
-                  <label class="text-gray-700 font-medium whitespace-nowrap">Based on today's experience, would you return to Ratnamouli Palace? <span class="text-red-500">*</span></label>
-                  <div class="flex items-center space-x-4">
-                    <label class="flex items-center text-gray-700"><input type="radio" value="Yes" formControlName="Return_to_Palace" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">Yes</span></label>
-                    <label class="flex items-center text-gray-700"><input type="radio" value="No" formControlName="Return_to_Palace" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">No</span></label>
-                  </div>
-                </div>
-                
-              </div>
-              
+				<!-- Yes/No Questions -->
+				<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-y border-gray-200">
+					<div class="flex flex-col space-y-3 sm:space-y-0 sm:flex-col sm:space-x-12 w-full text-sm">
+						
+						<!-- Manager Visit -->
+						<div class="flex items-center space-x-4">
+							<label class="text-gray-700 font-medium whitespace-nowrap">Did Manager visit your table? <span class="text-red-500">*</span></label>
+							<div class="flex items-center space-x-4">
+								<label class="flex items-center text-gray-700"><input type="radio" value="Yes" formControlName="'MANAGER VISIT'" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">Yes</span></label>
+								<label class="flex items-center text-gray-700"><input type="radio" value="No" formControlName="'MANAGER VISIT'" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">No</span></label>
+							</div>
+						</div>
+						
+						<!-- Return to Palace -->
+						<div class="flex items-center space-x-4 mt-4 sm:mt-0">
+							<label class="text-gray-700 font-medium whitespace-nowrap">Based on today's experience, would you return to Ratnamouli Palace? <span class="text-red-500">*</span></label>
+							<div class="flex items-center space-x-4">
+								<label class="flex items-center text-gray-700"><input type="radio" value="Yes" formControlName="'RETURN TO RATNAMOULI PALACE'" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">Yes</span></label>
+								<label class="flex items-center text-gray-700"><input type="radio" value="No" formControlName="'RETURN TO RATNAMOULI PALACE'" class="form-radio text-blue-700 h-4 w-4"> <span class="ml-2">No</span></label>
+							</div>
+						</div>
+						
+					</div>
+					
 
-            </div>
+				</div>
 
-            <!-- Staff/Table Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Table No:</label>
-                <input type="text" formControlName="Table_No" placeholder="Table number"
-                      class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Steward:</label>
-                <input type="text" formControlName="Steward" placeholder="Steward's name"
-                      class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
-              </div>
-              <div class="input-group">
-                <label class="block text-gray-700 font-medium mb-1">Manager:</label>
-                <input type="text" formControlName="Manager" placeholder="Manager's name"
-                      class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
-              </div>
-            </div>
-          </section>
-          
-          <!-- Submission Button and Status Messages -->
-          <div class="pt-6">
-            <button type="submit" 
-                    [disabled]="submissionStatus === 'submitting'"
-                    class="w-full py-3 text-white font-bold text-lg rounded-xl shadow-xl transition duration-300 tracking-widest uppercase transform hover:scale-[1.005] active:scale-100"
-                    [ngClass]="{'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-500/50': submissionStatus !== 'submitting', 'bg-blue-400 cursor-not-allowed': submissionStatus === 'submitting'}">
-              {{ submissionStatus === 'submitting' ? 'Submitting Feedback...' : 'Submit Feedback' }}
-            </button>
+				<!-- Staff/Table Details -->
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Table No:</label>
+						<input type="text" formControlName="'TABLE NO.'" placeholder="Table number"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Steward:</label>
+						<input type="text" formControlName="'STEWARD'" placeholder="Steward's name"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
+					</div>
+					<div class="input-group">
+						<label class="block text-gray-700 font-medium mb-1">Manager:</label>
+						<input type="text" formControlName="'MANAGER'" placeholder="Manager's name"
+							class="w-full border-b-2 border-gray-300 p-2 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent text-gray-900 placeholder-gray-400">
+					</div>
+				</div>
+			</section>
+			
+			<!-- Submission Button and Status Messages -->
+			<div class="pt-6">
+				<button type="submit" 
+						[disabled]="submissionStatus === 'submitting'"
+						class="w-full py-3 text-white font-bold text-lg rounded-xl shadow-xl transition duration-300 tracking-widest uppercase transform hover:scale-[1.005] active:scale-100"
+						[ngClass]="{'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-500/50': submissionStatus !== 'submitting', 'bg-blue-400 cursor-not-allowed': submissionStatus === 'submitting'}">
+					{{ submissionStatus === 'submitting' ? 'Submitting Feedback...' : 'Submit Feedback' }}
+				</button>
 
-            <!-- Status Messages -->
-            <p *ngIf="submissionStatus === 'success'" class="mt-6 p-4 bg-white text-green-700 rounded-lg text-center border-2 border-green-400 shadow-md font-medium text-base">
-              Thank you! Your feedback has been successfully recorded. 🎉
-            </p>
-            <p *ngIf="submissionStatus === 'validation_error'" class="mt-6 p-4 bg-white text-orange-600 rounded-lg text-center border-2 border-orange-400 shadow-md font-medium text-base">
-              ⚠️ Please fill in all required fields marked with an asterisk (*).
-            </p>
-            <p *ngIf="submissionStatus === 'server_error'" class="mt-6 p-4 bg-white text-red-700 rounded-lg text-center border-2 border-red-400 shadow-md font-medium text-base">
-              Error submitting form. Please try again or contact management. 😟
-            </p>
-          </div>
-        </form>
-        
-        <footer class="text-sm text-center mt-12 text-gray-500 border-t border-gray-100 pt-6">
-          Once again, we thank you for your valuable patronage.
-        </footer>
-      </div>
-    </div>
+				<!-- Status Messages -->
+				<p *ngIf="submissionStatus === 'success'" class="mt-6 p-4 bg-white text-green-700 rounded-lg text-center border-2 border-green-400 shadow-md font-medium text-base">
+					Thank you! Your feedback has been successfully recorded. 🎉
+				</p>
+				<p *ngIf="submissionStatus === 'validation_error'" class="mt-6 p-4 bg-white text-orange-600 rounded-lg text-center border-2 border-orange-400 shadow-md font-medium text-base">
+					⚠️ Please fill in all required fields marked with an asterisk (*).
+				</p>
+				<p *ngIf="submissionStatus === 'server_error'" class="mt-6 p-4 bg-white text-red-700 rounded-lg text-center border-2 border-red-400 shadow-md font-medium text-base">
+					Error submitting form. Please try again or contact management. 😟
+				</p>
+			</div>
+		</form>
+		
+		<footer class="text-sm text-center mt-12 text-gray-500 border-t border-gray-100 pt-6">
+			Once again, we thank you for your valuable patronage.
+		</footer>
+	</div>
+</div>
