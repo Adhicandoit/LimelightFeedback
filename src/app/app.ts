@@ -24,7 +24,7 @@ export class App implements OnInit {
 
 	// !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
 	// NOTE: Ensure this is the /exec URL, not the /dev URL.
-	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3F-ilsQwhbG1ZuNtS_W6bHgL5rz-Y4DQUa6dSlc8hxLmnO1rflx_roUmtdMwP5R69/exec';
+	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWikY7deUOH0MDW7eP_wDS3luNmtZZb3Lktlsw3BTvkNI7Pr5cATbODukUDkz_xtvt/exec';
 
 
 	// Time_of_Visit is removed
