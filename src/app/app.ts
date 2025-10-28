@@ -24,41 +24,41 @@ export class App implements OnInit {
 
 	// !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
 	// NOTE: Ensure this is the /exec URL, not the /dev URL.
-	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxFPbQZZSwugR7lT8Mp2yWu08kGEIfKbgDrNXyw7GNeQLsosFIobUOv74ShVcxTZtN/exec';
+	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzh1Aqh0AmF3t4mAv5M0vaoaSyCl09mVuXDvRYVkMOeM-fDa24hUMKzzYJZoj0iRklR/exec';
 
 
 	// Time_of_Visit is removed
 	initialData = {
-		Name: '',
-		Occupation: '',
-		Date_of_Birth: '',
-		Wedding_Anniversary: '',
-		Contact_Number: '',
-		Email: '',
-		Address: '', 
+		NAME: '',
+		OCCUPATION: '',
+		DOB: '',
+		WEDDING ANNIVERSARY: '',
+		MOBILE NO.: '',
+		EMAIL: '',
+		ADDRESS: '', 
 		
-		Date_of_Visit: '', 
+		DATE: '', 
 		
 		// Removed Food_Quality, Ambience, and Music
-		Hospitality: '', // Changed from 0 to '' (string rating)
-		Attention: '', // Changed from 0 to '' (string rating)
-		Taste: '', // Changed from 0 to '' (string rating)
-		Food_Temperature: '', // Changed from 0 to '' (string rating)
-		Food_Presentation: '', // Changed from 0 to '' (string rating)
-		Decor: '', // Changed from 0 to '' (string rating)
-		Cleanliness: '', // Changed from 0 to '' (string rating)
+		HOSPITALITY: '', // Changed from 0 to '' (string rating)
+		ATTENTION: '', // Changed from 0 to '' (string rating)
+		TASTE: '', // Changed from 0 to '' (string rating)
+		FOOD TEMPERATURE: '', // Changed from 0 to '' (string rating)
+		FOOD PRESENTATION: '', // Changed from 0 to '' (string rating)
+		DECOR: '', // Changed from 0 to '' (string rating)
+		CLEANLINESS: '', // Changed from 0 to '' (string rating)
 
-		How_Did_You_Hear: '',
-		Dishes_Liked: '',
-		Dishes_Disliked: '',
-		Any_Suggestions: '',
+		HOW DID YOU LEARN ABOUT RATNAMOULI PALACE: '',
+		DISHES YOU LIKED: '',
+		DISHES YOU DISLIKED: '',
+		ANY OTHER SUGGESTIONS: '',
 
-		Manager_Visit: '', 
-		Return_to_Palace: '', 
+		MANAGER VISIT: '', 
+		RETURN TO RATNAMOULI PALACE: '', 
 		
-		Table_No: '',
-		Steward: '',
-		Manager: ''
+		TABLE NO.: '',
+		STEWARD: '',
+		MANAGER: ''
 	};
 
 	constructor(private fb: FormBuilder, private http: HttpClient) { }
@@ -66,39 +66,39 @@ export class App implements OnInit {
 	ngOnInit(): void {
 		this.commentsForm = this.fb.group({
 			// Personal & Visit Details
-			Name: [this.initialData.Name, Validators.required],
-			Occupation: [this.initialData.Occupation],
-			Date_of_Birth: [this.initialData.Date_of_Birth, Validators.required],
-			Wedding_Anniversary: [this.initialData.Wedding_Anniversary],
-			Contact_Number: [this.initialData.Contact_Number, Validators.required],
-			Email: [this.initialData.Email, Validators.email],
-			Address: [this.initialData.Address], 
+			'NAME': [this.initialData.NAME, Validators.required],
+			'OCCUPATION': [this.initialData.OCCUPATION],
+			'DOB': [this.initialData.DOB, Validators.required],
+			'WEDDING ANNIVERSARY': [this.initialData['WEDDING ANNIVERSARY']],
+			'MOBILE NO.': [this.initialData['MOBILE NO.'], Validators.required],
+			'EMAIL': [this.initialData.EMAIL, Validators.email],
+			'ADDRESS': [this.initialData.ADDRESS],	
 			
-			Date_of_Visit: [this.initialData.Date_of_Visit, Validators.required],
+			'DATE': [this.initialData.DATE, Validators.required],
 			
-			// Ratings (Fields removed: Food_Quality, Ambience, Music)
-			Hospitality: [this.initialData.Hospitality],
-			Attention: [this.initialData.Attention],
-			Taste: [this.initialData.Taste],
-			Food_Temperature: [this.initialData.Food_Temperature],
-			Food_Presentation: [this.initialData.Food_Presentation],
-			Decor: [this.initialData.Decor],
-			Cleanliness: [this.initialData.Cleanliness],
+			// Ratings
+			'HOSPITALITY': [this.initialData.HOSPITALITY],
+			'ATTENTION': [this.initialData.ATTENTION],
+			'TASTE': [this.initialData.TASTE],
+			'FOOD TEMPERATURE': [this.initialData['FOOD TEMPERATURE']],
+			'FOOD PRESENTATION': [this.initialData['FOOD PRESENTATION']],
+			'DECOR': [this.initialData.DECOR],
+			'CLEANLINESS': [this.initialData.CLEANLINESS],
 
 			// Open-ended/Specific Questions
-			How_Did_You_Hear: [this.initialData.How_Did_You_Hear],
-			Dishes_Liked: [this.initialData.Dishes_Liked],
-			Dishes_Disliked: [this.initialData.Dishes_Disliked], 
-			Any_Suggestions: [this.initialData.Any_Suggestions],
+			'HOW DID YOU LEARN ABOUT RATNAMOULI PALACE': [this.initialData['HOW DID YOU LEARN ABOUT RATNAMOULI PALACE']],
+			'DISHES YOU LIKED': [this.initialData['DISHES YOU LIKED']],
+			'DISHES YOU DISLIKED': [this.initialData['DISHES YOU DISLIKED']],	
+			'ANY OTHER SUGGESTIONS': [this.initialData['ANY OTHER SUGGESTIONS']],
 
 			// Yes/No
-			Manager_Visit: [this.initialData.Manager_Visit, Validators.required],
-			Return_to_Palace: [this.initialData.Return_to_Palace, Validators.required],
+			'MANAGER VISIT': [this.initialData['MANAGER VISIT'], Validators.required],
+			'RETURN TO RATNAMOULI PALACE': [this.initialData['RETURN TO RATNAMOULI PALACE'], Validators.required],
 			
 			// Footer fields
-			Table_No: [this.initialData.Table_No, Validators.required],
-			Steward: [this.initialData.Steward, Validators.required],
-			Manager: [this.initialData.Manager, Validators.required]
+			'TABLE NO.': [this.initialData['TABLE NO.'], Validators.required],
+			'STEWARD': [this.initialData.STEWARD, Validators.required],
+			'MANAGER': [this.initialData.MANAGER, Validators.required]
 		});
 	}
 
