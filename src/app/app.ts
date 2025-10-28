@@ -1,8 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Added HttpHeaders for clarity
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { CommonModule } from '@angular/common';
 
+// --- FIX: Define an interface to explicitly declare keys with spaces ---
+interface FeedbackFormKeys {
+    'NAME': string;
+    'OCCUPATION': string;
+    'DOB': string;
+    'WEDDING ANNIVERSARY': string;
+    'MOBILE NO.': string;
+    'EMAIL': string;
+    'ADDRESS': string;	
+    'DATE': string;	
+    'HOSPITALITY': string; 
+    'ATTENTION': string; 
+    'TASTE': string; 
+    'FOOD TEMPERATURE': string;
+    'FOOD PRESENTATION': string; 
+    'DECOR': string; 
+    'CLEANLINESS': string; 
+    'HOW DID YOU LEARN ABOUT RATNAMOULI PALACE': string;
+    'DISHES YOU LIKED': string;
+    'DISHES YOU DISLIKED': string;
+    'ANY OTHER SUGGESTIONS': string;
+    'MANAGER VISIT': string;	
+    'RETURN TO RATNAMOULI PALACE': string;	
+    'TABLE NO.': string;
+    'STEWARD': string;
+    'MANAGER': string;
+}
 
 @Component({
 	selector: 'app-root',
@@ -11,97 +38,104 @@ import { CommonModule } from '@angular/common';
 		CommonModule, 		
 		ReactiveFormsModule 	
 	],
-	standalone: true, 
+	standalone: true,	
 	
-	styleUrls: ['./app.scss'] 
+	styleUrls: ['./app.scss']	
 })
 export class App implements OnInit {
 	
 	commentsForm!: FormGroup;
-	submissionStatus: 'initial' | 'submitting' | 'success' | 'server_error' | 'validation_error' = 'initial'; 
-	public V = Validators; 
+	submissionStatus: 'initial' | 'submitting' | 'success' | 'server_error' | 'validation_error' = 'initial';	
+	public V = Validators;	
 
 
 	// !!! REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL !!!
 	// NOTE: Ensure this is the /exec URL, not the /dev URL.
+<<<<<<< HEAD
 	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWikY7deUOH0MDW7eP_wDS3luNmtZZb3Lktlsw3BTvkNI7Pr5cATbODukUDkz_xtvt/exec';
+=======
+	private readonly SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxFPbQZZSwugR7lT8Mp2yWu08kGEIfKbgDrNXyw7GNeQLsosFIobUOv74ShVcxTZtN/exec';
+>>>>>>> 9bf31b8711069592b99df43e8dac5ed188372ff2
 
 
-	// Time_of_Visit is removed
-	initialData = {
-		Name: '',
-		Occupation: '',
-		Date_of_Birth: '',
-		Wedding_Anniversary: '',
-		Contact_Number: '',
-		Email: '',
-		Address: '', 
+	// Apply the new interface and explicitly cast the object literal to ensure strict typing of keys.
+	// This cast resolves the TS7053 errors.
+	initialData: FeedbackFormKeys = {
+		'NAME': '', // <-- Keys with spaces and uppercase
+		'OCCUPATION': '',
+		'DOB': '',
+		'WEDDING ANNIVERSARY': '',
+		'MOBILE NO.': '',
+		'EMAIL': '',
+		'ADDRESS': '',	
 		
-		Date_of_Visit: '', 
+		'DATE': '',	
 		
-		// Removed Food_Quality, Ambience, and Music
-		Hospitality: '', // Changed from 0 to '' (string rating)
-		Attention: '', // Changed from 0 to '' (string rating)
-		Taste: '', // Changed from 0 to '' (string rating)
-		Food_Temperature: '', // Changed from 0 to '' (string rating)
-		Food_Presentation: '', // Changed from 0 to '' (string rating)
-		Decor: '', // Changed from 0 to '' (string rating)
-		Cleanliness: '', // Changed from 0 to '' (string rating)
+		// Ratings 
+		'HOSPITALITY': '', 
+		'ATTENTION': '', 
+		'TASTE': '', 
+		'FOOD TEMPERATURE': '',
+		'FOOD PRESENTATION': '', 
+		'DECOR': '', 
+		'CLEANLINESS': '', 
 
-		How_Did_You_Hear: '',
-		Dishes_Liked: '',
-		Dishes_Disliked: '',
-		Any_Suggestions: '',
+		'HOW DID YOU LEARN ABOUT RATNAMOULI PALACE': '',
+		'DISHES YOU LIKED': '',
+		'DISHES YOU DISLIKED': '',
+		'ANY OTHER SUGGESTIONS': '',
 
-		Manager_Visit: '', 
-		Return_to_Palace: '', 
+		'MANAGER VISIT': '',	
+		'RETURN TO RATNAMOULI PALACE': '',	
 		
-		Table_No: '',
-		Steward: '',
-		Manager: ''
-	};
+		'TABLE NO.': '',
+		'STEWARD': '',
+		'MANAGER': ''
+	} as FeedbackFormKeys; // <-- The critical fix applied here
 
 	constructor(private fb: FormBuilder, private http: HttpClient) { }
 
 	ngOnInit(): void {
 		this.commentsForm = this.fb.group({
+			// Using bracket notation and accessing initialData values
+			
 			// Personal & Visit Details
-			Name: [this.initialData.Name, Validators.required],
-			Occupation: [this.initialData.Occupation],
-			Date_of_Birth: [this.initialData.Date_of_Birth, Validators.required],
-			Wedding_Anniversary: [this.initialData.Wedding_Anniversary],
-			Contact_Number: [this.initialData.Contact_Number, Validators.required],
-			Email: [this.initialData.Email, Validators.email],
-			Address: [this.initialData.Address], 
+			'NAME': [this.initialData['NAME'], Validators.required],
+			'OCCUPATION': [this.initialData['OCCUPATION']],
+			'DOB': [this.initialData['DOB'], Validators.required],
+			'WEDDING ANNIVERSARY': [this.initialData['WEDDING ANNIVERSARY']],
+			'MOBILE NO.': [this.initialData['MOBILE NO.'], Validators.required],
+			'EMAIL': [this.initialData['EMAIL'], Validators.email],
+			'ADDRESS': [this.initialData['ADDRESS']],	
 			
-			Date_of_Visit: [this.initialData.Date_of_Visit, Validators.required],
+			'DATE': [this.initialData['DATE'], Validators.required],
 			
-			// Ratings (Fields removed: Food_Quality, Ambience, Music)
-			Hospitality: [this.initialData.Hospitality],
-			Attention: [this.initialData.Attention],
-			Taste: [this.initialData.Taste],
-			Food_Temperature: [this.initialData.Food_Temperature],
-			Food_Presentation: [this.initialData.Food_Presentation],
-			Decor: [this.initialData.Decor],
-			Cleanliness: [this.initialData.Cleanliness],
+			// Ratings
+			'HOSPITALITY': [this.initialData['HOSPITALITY']],
+			'ATTENTION': [this.initialData['ATTENTION']],
+			'TASTE': [this.initialData['TASTE']],
+			'FOOD TEMPERATURE': [this.initialData['FOOD TEMPERATURE']],
+			'FOOD PRESENTATION': [this.initialData['FOOD PRESENTATION']],
+			'DECOR': [this.initialData['DECOR']],
+			'CLEANLINESS': [this.initialData['CLEANLINESS']],
 
 			// Open-ended/Specific Questions
-			How_Did_You_Hear: [this.initialData.How_Did_You_Hear],
-			Dishes_Liked: [this.initialData.Dishes_Liked],
-			Dishes_Disliked: [this.initialData.Dishes_Disliked], 
-			Any_Suggestions: [this.initialData.Any_Suggestions],
+			'HOW DID YOU LEARN ABOUT RATNAMOULI PALACE': [this.initialData['HOW DID YOU LEARN ABOUT RATNAMOULI PALACE']],
+			'DISHES YOU LIKED': [this.initialData['DISHES YOU LIKED']],
+			'DISHES YOU DISLIKED': [this.initialData['DISHES YOU DISLIKED']],	
+			'ANY OTHER SUGGESTIONS': [this.initialData['ANY OTHER SUGGESTIONS']],
 
 			// Yes/No
-			Manager_Visit: [this.initialData.Manager_Visit, Validators.required],
-			Return_to_Palace: [this.initialData.Return_to_Palace, Validators.required],
+			'MANAGER VISIT': [this.initialData['MANAGER VISIT'], Validators.required],
+			'RETURN TO RATNAMOULI PALACE': [this.initialData['RETURN TO RATNAMOULI PALACE'], Validators.required],
 			
 			// Footer fields
-			Table_No: [this.initialData.Table_No, Validators.required],
-			Steward: [this.initialData.Steward, Validators.required],
-			Manager: [this.initialData.Manager, Validators.required]
+			'TABLE NO.': [this.initialData['TABLE NO.'], Validators.required],
+			'STEWARD': [this.initialData['STEWARD'], Validators.required],
+			'MANAGER': [this.initialData['MANAGER'], Validators.required]
 		});
 	}
-
+    
 	onSubmit(): void {
 		if (this.commentsForm.invalid) {
 			this.commentsForm.markAllAsTouched();
@@ -111,27 +145,14 @@ export class App implements OnInit {
 
 		this.submissionStatus = 'submitting';
 		
-		// --- 💥 CRITICAL CHANGE: Format data for Apps Script ---
-		// Apps Script is much happier with application/x-www-form-urlencoded format
-		// However, to get the robustness of the doPost(e) function which uses e.postData.contents,
-		// we will keep sending a JSON string, but we will simplify the HTTP configuration
-		// and append a callback parameter to force a cleaner response path.
-		
 		const formData = this.commentsForm.value;
-		
-		// We will use a URLSearchParams approach to package the JSON string under a single key,
-		// which often resolves deep-seated CORS/preflight issues with Apps Script.
 		
 		const body = new URLSearchParams();
 		body.set('data', JSON.stringify(formData));
 		
-		// This ensures the request doesn't trigger a CORS preflight, which is likely being blocked.
-		const headers = new HttpHeaders({ 
-			'Content-Type': 'application/x-www-form-urlencoded' 
+		const headers = new HttpHeaders({	
+			'Content-Type': 'application/x-www-form-urlencoded'	
 		});
-
-		// We MUST use the /exec endpoint. The Apps Script doPost needs to be modified 
-		// to use e.parameter.data when using URLSearchParams (next step).
 		
 		this.http.post(this.SCRIPT_URL, body.toString(), { headers }).subscribe({
 			next: (response) => {
