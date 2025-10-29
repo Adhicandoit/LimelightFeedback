@@ -1,0 +1,67 @@
+<div *ngIf="showLoader" class="fixed inset-0 bg-blue-900/50 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div class="flex flex-col items-center p-8 bg-white rounded-lg shadow-2xl">
+        <svg class="animate-spin h-10 w-10 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="mt-4 text-lg font-semibold text-blue-800">Finalizing Feedback...</p>
+        <p class="text-sm text-gray-600">Please wait while we secure your submission.</p>
+    </div>
+</div>
+
+<div class="min-h-screen bg-gray-50 p-4 sm:p-8 flex items-center justify-center font-inter">
+    <div class="w-full max-w-lg mx-auto p-8 bg-white shadow-2xl rounded-2xl text-gray-800 border border-gray-100">
+
+        <header class="text-center pb-6 mb-8 border-b-4 border-green-100">
+            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">STAFF & TABLE DETAILS</h1>
+            <h2 class="text-md font-light text-green-700 mt-2">Required for final processing</h2>
+        </header>
+
+        <form [formGroup]="staffForm" (ngSubmit)="onFinalSubmit()" class="space-y-8">
+            
+            <section class="space-y-6">
+                <div class="grid grid-cols-1 gap-6 text-base">
+                    <div class="input-group">
+                        <label class="block text-gray-700 font-bold mb-2">Table No: <span class="text-red-500">*</span></label>
+                        <input type="text" formControlName="Table_No" placeholder="Enter Table number"
+                            class="w-full border-2 border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-green-500 transition duration-300 bg-white placeholder-gray-400">
+                        <div *ngIf="staffForm.get('Table_No')?.invalid && (staffForm.get('Table_No')?.dirty || staffForm.get('Table_No')?.touched)" 
+                            class="text-red-600 text-xs mt-1">Table No is required.</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="block text-gray-700 font-bold mb-2">Steward: <span class="text-red-500">*</span></label>
+                        <input type="text" formControlName="Steward" placeholder="Steward's name"
+                            class="w-full border-2 border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-green-500 transition duration-300 bg-white placeholder-gray-400">
+                        <div *ngIf="staffForm.get('Steward')?.invalid && (staffForm.get('Steward')?.dirty || staffForm.get('Steward')?.touched)" 
+                            class="text-red-600 text-xs mt-1">Steward name is required.</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="block text-gray-700 font-bold mb-2">Manager: <span class="text-red-500">*</span></label>
+                        <input type="text" formControlName="Manager" placeholder="Manager's name"
+                            class="w-full border-2 border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:border-green-500 transition duration-300 bg-white placeholder-gray-400">
+                        <div *ngIf="staffForm.get('Manager')?.invalid && (staffForm.get('Manager')?.dirty || staffForm.get('Manager')?.touched)" 
+                            class="text-red-600 text-xs mt-1">Manager name is required.</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="pt-6">
+                <button type="submit" 
+                    [disabled]="finalSubmissionStatus === 'submitting'"
+                    class="w-full py-4 text-white font-extrabold text-xl rounded-xl shadow-2xl transition duration-300 tracking-widest uppercase transform hover:scale-[1.005] active:scale-100"
+                    [ngClass]="{'bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-500/50': finalSubmissionStatus !== 'submitting', 'bg-green-400 cursor-not-allowed': finalSubmissionStatus === 'submitting'}">
+                    {{ finalSubmissionStatus === 'submitting' ? 'Submitting ALL Data...' : 'SUBMIT ALL DETAILS' }}
+                </button>
+
+                <p *ngIf="finalSubmissionStatus === 'success'" class="mt-6 p-4 bg-white text-green-700 rounded-lg text-center border-2 border-green-400 shadow-md font-medium text-base">
+                    ✅ Success! All data has been sent to the Google Sheet.
+                </p>
+                <p *ngIf="finalSubmissionStatus === 'server_error'" class="mt-6 p-4 bg-white text-red-700 rounded-lg text-center border-2 border-red-400 shadow-md font-medium text-base">
+                    ⚠️ Error or Validation failed. Please check required fields.
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
