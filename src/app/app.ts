@@ -1,5 +1,5 @@
 // src/app/app.component.ts (Modified)
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -125,6 +125,32 @@ export class App implements OnInit {
             : ['April', 'June', 'September', 'November'].includes(month) ? 30
             : 31;
         return Array.from({ length: max }, (_, i) => i + 1);
+    }
+
+    anniversaryOpen = false;
+
+    // Clicks anywhere outside the picker close it (clicks inside stop propagation in the template)
+    @HostListener('document:click')
+    closeAnniversary(): void {
+        this.anniversaryOpen = false;
+    }
+
+    selectAnniversaryMonth(month: string): void {
+        this.commentsForm.get('Anniversary_Month')!.setValue(month);
+    }
+
+    selectAnniversaryDay(day: number): void {
+        this.commentsForm.get('Anniversary_Day')!.setValue(day);
+        // Close once both parts are chosen
+        if (this.commentsForm.get('Anniversary_Month')!.value) {
+            this.anniversaryOpen = false;
+        }
+    }
+
+    clearAnniversary(): void {
+        this.commentsForm.get('Anniversary_Day')!.setValue('');
+        this.commentsForm.get('Anniversary_Month')!.setValue('');
+        this.anniversaryOpen = false;
     }
 
     private updateAnniversary(): void {
