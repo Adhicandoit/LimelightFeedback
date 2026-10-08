@@ -234,14 +234,14 @@
                 
                 <div class="pt-6">
                     <button type="submit" 
-                            [disabled]="commentsForm.invalid || showLoader"
+                            [disabled]="showLoader"
                             class="w-full py-3 text-white font-bold text-lg rounded-xl shadow-xl transition duration-300 tracking-widest uppercase transform hover:scale-[1.005] active:scale-100"
                             [ngClass]="{'bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-500/50': !showLoader, 'bg-blue-400 cursor-not-allowed': showLoader}">
                         {{ showLoader ? 'Saving Data...' : 'PROCEED' }} 
                     </button>
 
                     <p *ngIf="submissionStatus === 'validation_error'" class="mt-6 p-4 bg-white text-orange-600 rounded-lg text-center border-2 border-orange-400 shadow-md font-medium text-base">
-                        ⚠️ Please fill in all required fields marked with an asterisk (*).
+                        ⚠️ Fill all required fields.
                     </p>
                 </div>
             </form>

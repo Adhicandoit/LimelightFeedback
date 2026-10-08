@@ -108,6 +108,13 @@ export class App implements OnInit {
             // !!! Removed Table_No, Steward, Manager from Form Group Page 1 !!!
         });
 
+        // Drop the "fill all required fields" banner as soon as the form becomes valid
+        this.commentsForm.statusChanges.subscribe(() => {
+            if (this.commentsForm.valid && this.submissionStatus === 'validation_error') {
+                this.submissionStatus = 'initial';
+            }
+        });
+
         // Keep Wedding_Anniversary (day + month, no year) in sync with the two selects
         this.commentsForm.get('Anniversary_Day')?.valueChanges.subscribe(() => this.updateAnniversary());
         this.commentsForm.get('Anniversary_Month')?.valueChanges.subscribe(() => this.updateAnniversary());
@@ -172,6 +179,9 @@ export class App implements OnInit {
 
     // Renamed from onSubmit to onProceed for clarity
     onProceed(): void {
+        if (this.showLoader) {
+            return; // already moving to page 2
+        }
         if (this.commentsForm.invalid) {
             this.commentsForm.markAllAsTouched();
             this.submissionStatus = 'validation_error';
