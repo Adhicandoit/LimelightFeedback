@@ -18,8 +18,12 @@ import { DataTransferService } from '../service/DataTransfer.service'; // Path a
 export class StaffDetailsComponent implements OnInit {
 
   staffForm!: FormGroup;
-  finalSubmissionStatus: 'initial' | 'submitting' | 'success' | 'server_error' = 'initial';
+  finalSubmissionStatus: 'initial' | 'submitting' | 'success' | 'validation_error' | 'server_error' = 'initial';
   showLoader = false; // Controls the professional loader
+
+  // One ID per guest submission (this component is recreated for every new guest).
+  // It is re-sent unchanged on retries so the Apps Script can skip repeats.
+  private readonly submissionId = this.generateSubmissionId();
 
   // ⭐️ NEW: Output to signal success to the parent (AppComponent)
   @Output() submissionComplete = new EventEmitter<void>();
@@ -40,12 +44,24 @@ export class StaffDetailsComponent implements OnInit {
       Steward: ['', Validators.required],
       Manager: ['', Validators.required]
     });
+
+    // Drop the validation banner as soon as the form becomes valid
+    this.staffForm.statusChanges.subscribe(() => {
+      if (this.staffForm.valid && this.finalSubmissionStatus === 'validation_error') {
+        this.finalSubmissionStatus = 'initial';
+      }
+    });
   }
 
   onFinalSubmit(): void{
+    // Synchronous guard: ignore any call while a request is already in flight
+    if (this.finalSubmissionStatus === 'submitting') {
+      return;
+    }
+
     if (this.staffForm.invalid) {
       this.staffForm.markAllAsTouched();
-      this.finalSubmissionStatus = 'server_error'; // Reusing 'server_error' for simple error display on Page 2
+      this.finalSubmissionStatus = 'validation_error';
       return;
     }
 
@@ -55,7 +71,7 @@ export class StaffDetailsComponent implements OnInit {
     // 2. Combine guest data (Page 1) and staff data (Page 2)
     const guestData = this.dataTransfer.getGuestData();
     const staffData = this.staffForm.value;
-    const finalData = { ...guestData, ...staffData }; // Merge data objects
+    const finalData = { ...guestData, ...staffData, submissionId: this.submissionId }; // Merge data objects
 
     console.log('Final Data to Submit:', finalData);
 
@@ -84,5 +100,13 @@ export class StaffDetailsComponent implements OnInit {
             this.showLoader = false;
         }
     });
+  }
+
+  private generateSubmissionId(): string {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    // Fallback for older browsers / non-secure contexts
+    return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
   }
 }

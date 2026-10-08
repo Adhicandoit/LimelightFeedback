@@ -58,8 +58,11 @@
                 <p *ngIf="finalSubmissionStatus === 'success'" class="mt-6 p-4 bg-white text-green-700 rounded-lg text-center border-2 border-green-400 shadow-md font-medium text-base">
                     ✅ Success! All data has been sent to the Google Sheet.
                 </p>
+                <p *ngIf="finalSubmissionStatus === 'validation_error'" class="mt-6 p-4 bg-white text-orange-600 rounded-lg text-center border-2 border-orange-400 shadow-md font-medium text-base">
+                    ⚠️ Please fill in all required fields marked with an asterisk (*).
+                </p>
                 <p *ngIf="finalSubmissionStatus === 'server_error'" class="mt-6 p-4 bg-white text-red-700 rounded-lg text-center border-2 border-red-400 shadow-md font-medium text-base">
-                    ⚠️ Error or Validation failed. Please check required fields.
+                    ⚠️ We couldn't confirm your submission. Please try again.
                 </p>
             </div>
         </form>
