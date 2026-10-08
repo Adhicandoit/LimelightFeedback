@@ -55,8 +55,18 @@
                         </div>
                         <div class="input-group">
                             <label class="block text-gray-700 font-medium mb-1 text-nowrap">Wedding Anniversary</label>
-                            <input type="date" formControlName="Wedding_Anniversary" 
-                                    class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+                            <div class="grid grid-cols-2 gap-4">
+                                <select formControlName="Anniversary_Day" aria-label="Anniversary day"
+                                        class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+                                    <option value="">Day</option>
+                                    <option *ngFor="let d of anniversaryDays" [value]="d">{{ d }}</option>
+                                </select>
+                                <select formControlName="Anniversary_Month" aria-label="Anniversary month"
+                                        class="w-full border-b-2 border-gray-300 p-2 text-gray-900 focus:outline-none focus:border-blue-500 transition duration-300 bg-transparent">
+                                    <option value="">Month</option>
+                                    <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 

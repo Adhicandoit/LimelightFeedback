@@ -36,6 +36,8 @@ export class App implements OnInit {
         Occupation: '',
         Date_of_Birth: '',
         Wedding_Anniversary: '',
+        Anniversary_Day: '',
+        Anniversary_Month: '',
         Contact_Number: '',
         Email: '',
         Address: '', 
@@ -73,7 +75,11 @@ export class App implements OnInit {
             Name: [this.initialData.Name, Validators.required],
             Occupation: [this.initialData.Occupation],
             Date_of_Birth: [this.initialData.Date_of_Birth, Validators.required],
+            // Wedding_Anniversary is derived ("21 January") from the day/month selects below;
+            // it is the only anniversary key the Apps Script reads.
             Wedding_Anniversary: [this.initialData.Wedding_Anniversary],
+            Anniversary_Day: [this.initialData.Anniversary_Day],
+            Anniversary_Month: [this.initialData.Anniversary_Month],
             Contact_Number: [this.initialData.Contact_Number, Validators.required],
             Email: [this.initialData.Email, Validators.email],
             Address: [this.initialData.Address], 
@@ -101,6 +107,41 @@ export class App implements OnInit {
             
             // !!! Removed Table_No, Steward, Manager from Form Group Page 1 !!!
         });
+
+        // Keep Wedding_Anniversary (day + month, no year) in sync with the two selects
+        this.commentsForm.get('Anniversary_Day')?.valueChanges.subscribe(() => this.updateAnniversary());
+        this.commentsForm.get('Anniversary_Month')?.valueChanges.subscribe(() => this.updateAnniversary());
+    }
+
+    readonly months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    // Days offered for the selected month (February allows 29 for leap-day anniversaries)
+    get anniversaryDays(): number[] {
+        const month = this.commentsForm?.get('Anniversary_Month')?.value;
+        const max = month === 'February' ? 29
+            : ['April', 'June', 'September', 'November'].includes(month) ? 30
+            : 31;
+        return Array.from({ length: max }, (_, i) => i + 1);
+    }
+
+    private updateAnniversary(): void {
+        const dayControl = this.commentsForm.get('Anniversary_Day')!;
+        const day = dayControl.value;
+        const month = this.commentsForm.get('Anniversary_Month')!.value;
+
+        // A previously chosen day may not exist in the newly chosen month (e.g. 31 -> April)
+        if (day && Number(day) > this.anniversaryDays.length) {
+            dayControl.setValue('', { emitEvent: false });
+        }
+
+        const finalDay = dayControl.value;
+        this.commentsForm.get('Wedding_Anniversary')!.setValue(
+            finalDay && month ? `${finalDay} ${month}` : '',
+            { emitEvent: false }
+        );
     }
 
     // Renamed from onSubmit to onProceed for clarity
@@ -132,13 +173,16 @@ export class App implements OnInit {
         this.showPage1 = true;
         
         // 2. Reset the Page 1 form and status for the next entry
-        this.commentsForm.reset(); 
+        // Reset to the empty-string defaults (a bare reset() would set nulls, which the sheet stores as "null")
+        this.commentsForm.reset(this.initialData);
         this.commentsForm.markAsPristine();
         this.commentsForm.markAsUntouched();
         this.submissionStatus = 'initial';
         this.showLoader = false;
 
         // Reset specific select/dropdown fields if form.reset() doesn't clear them
+        this.commentsForm.get('Anniversary_Day')?.setValue('');
+        this.commentsForm.get('Anniversary_Month')?.setValue('');
         this.commentsForm.get('Hospitality')?.setValue('');
         this.commentsForm.get('Attention')?.setValue('');
         this.commentsForm.get('Taste')?.setValue('');
